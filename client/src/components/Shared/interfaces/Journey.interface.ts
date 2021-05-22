@@ -2,8 +2,7 @@ export interface IJourneyInfo {
   id: string
   userId: string
   driverId: string
-  routeId: number
-  status: 'pending' | 'driving' | 'complete'
+  status: string
   departTime: string
   arriveTime: string
 }

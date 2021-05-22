@@ -1,0 +1,21 @@
+.driver-detail {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  .detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    .header-left {
+      display: flex;
+      align-items: center;
+      p {
+        margin-left: 0.5rem;
+      }
+    }
+  }
+  .detail-image {
+    margin-top: 2rem;
+  }
+}
