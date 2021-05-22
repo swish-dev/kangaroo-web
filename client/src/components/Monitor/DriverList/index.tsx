@@ -9,7 +9,9 @@ function DriverList() {
   const generateDriverList = () => {
     return drivers?.map(({ id, name, journeys }) => (
       <li className="driver-row" key={id}>
-        <p>{name}</p>
+        <p>
+          <b>{name}</b>
+        </p>
         <p>{journeys[journeys.length - 1]?.status?.toLowerCase()}</p>
       </li>
     ))

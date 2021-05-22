@@ -12,6 +12,7 @@ const cx = classNames.bind(styles)
 const SIDEBAR_MENU = {
   DRIVER: 'DRIVER',
   USER: 'USER',
+  CAR: 'CAR',
 }
 
 function Monitor() {

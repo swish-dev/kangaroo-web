@@ -10,7 +10,9 @@ function UserList() {
   const generateUserList = () => {
     return users?.map(({ id, nickname, journeys }) => (
       <li className="user-row" key={id}>
-        <p>{nickname}</p>
+        <p>
+          <b>{nickname}</b>
+        </p>
         <p>{journeys[journeys.length - 1]?.status?.toLowerCase()}</p>
       </li>
     ))
