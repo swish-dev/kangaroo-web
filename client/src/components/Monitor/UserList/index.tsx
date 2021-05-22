@@ -1,12 +1,11 @@
 import { memo } from 'react'
 import { getUsers } from '../../Shared/services/user'
-import { useSetRequestInterval } from '../../Shared/hooks/useSetRequestInterval'
-import { IUserInfo } from '../../Shared/interfaces/User.interface'
+import { usePollingFetch } from '../../Shared/hooks'
 
 import './style.scss'
 
 function UserList() {
-  const users: IUserInfo[] = useSetRequestInterval(getUsers, 5000) || []
+  const { data: users } = usePollingFetch(getUsers, 5000) || []
 
   const generateUserList = () => {
     return users?.map(({ id, nickname, journeys }) => (

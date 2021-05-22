@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import dayjs from 'dayjs'
 import { IoIosArrowBack } from 'react-icons/io'
-import { useSetRequestInterval } from '../../Shared/hooks/useSetRequestInterval'
+import { usePollingFetch } from '../../Shared/hooks'
 import { getDriverById } from '../../Shared/services/driver'
 
 import { IDriverInfo } from '../../Shared/interfaces/Driver.interface'
@@ -13,12 +13,21 @@ interface Props {
   setSelectedDriver: (driver: IDriverInfo | null) => void
 }
 
-function DriverDetail({ driver, setSelectedDriver }: Props) {
-  const { id, name, journeys } = driver
-  const { fmsReport }: IDriverInfo = useSetRequestInterval(
+function DriverDetail({
+  driver: { id, name, journeys },
+  setSelectedDriver,
+}: Props) {
+  const { data: driver } = usePollingFetch(
     async () => await getDriverById(id),
     2000
   )
+
+  if (!driver) {
+    return null
+  }
+
+  const { fmsReport } = driver
+
   return (
     <div className="driver-detail">
       <div className="detail-header">
@@ -29,7 +38,7 @@ function DriverDetail({ driver, setSelectedDriver }: Props) {
         {journeys[journeys.length - 1]?.status.toLowerCase()}
       </div>
       <div className="detail-image">
-        <img src={carImage} />
+        <img src={carImage} alt="Car" />
         <div className="speed">
           <p>Speed</p>
           <p>
