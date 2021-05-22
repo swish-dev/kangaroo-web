@@ -10,11 +10,13 @@ import MainLayout from '../layouts/main'
 import KidsPart from '../main/kids'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import Map from '../../Shared/Map'
+import Footer from './footer'
+import { AiOutlineCloseSquare } from 'react-icons/ai'
 
 import './style.scss'
 import dayjs from 'dayjs'
 
-const STAY_TIME = 8000
+const STAY_TIME = 10000
 
 export default function OnBoard() {
   const userId = UserService.getMyId()
@@ -23,21 +25,24 @@ export default function OnBoard() {
   const [driver, setDriver] = useState<IDriverInfo | null>(null)
   const [redirectPath, setRedirectPath] = useState('')
   const [startTime, setStartTime] = useState<any>(null)
+  const [currentJourney, setCurrentJourney] = useState<any>(null)
   const [_, setTick] = useState<any>('')
   useEffect(() => {
     handleGetKids()
     const asyncFunc = async () => {
       const { journeys } = await getUserById(userId)
-      const driverInfo = await getDriverById(
-        journeys[journeys.length - 1]?.driverId
-      )
+      const curJourney = journeys[journeys.length - 1]
+      setCurrentJourney(curJourney)
+      const driverInfo = await getDriverById(curJourney?.driverId)
       setDriver(driverInfo)
     }
     asyncFunc()
 
     setStartTime(new Date())
     const timeoutId = setTimeout(() => {
-      setRedirectPath('/parent')
+      clearInterval(intervalId)
+      setIsArrived(true)
+      setShowMap(false)
     }, STAY_TIME)
 
     const intervalId = setInterval(() => {
@@ -57,58 +62,86 @@ export default function OnBoard() {
   }
 
   const [showMap, setShowMap] = useState(false)
+  const [isArrived, setIsArrived] = useState(false)
+  useEffect(() => {
+    if (showMap && currentJourney) {
+      setInterval(async () => {
+        const driverInfo = await getDriverById(currentJourney?.driverId)
+        setDriver(driverInfo)
+      }, 1000)
+    }
+  }, [showMap])
+
   if (redirectPath) return <Redirect to={redirectPath} />
   return (
     <MainLayout>
       {showMap && driver ? (
-        <Map
-          {...{
-            markers: [
-              {
-                lat: driver.lat,
-                lng: driver.lng,
-                imageType: MarkerImageType.CAR_OCCUPIED,
-              },
-            ],
-            isFollow: true,
-          }}
-        />
+        <>
+          <AiOutlineCloseSquare
+            color="black"
+            size="3rem"
+            className="close-button"
+            onClick={() => setShowMap(false)}
+          />
+          <Map
+            {...{
+              markers: [
+                {
+                  lat: driver.lat,
+                  lng: driver.lng,
+                  imageType: MarkerImageType.CAR_OCCUPIED,
+                },
+              ],
+              isFollow: true,
+            }}
+          />
+        </>
       ) : (
         <>
           <KidsPart {...{ kids, setKids, selectedKid, setSelectedKid }} />
           <div className="info-text">
             <p>
               <strong>{kids[selectedKid]?.name}</strong>
-              {` is moving!`}
+              {isArrived ? ` arrived!` : ` is moving!`}
             </p>
-            <p>Map</p>
           </div>
           <div className="progress">
             <LinearProgress
               variant="determinate"
-              value={(dayjs(new Date()).diff(startTime) / STAY_TIME) * 100}
+              value={
+                isArrived
+                  ? 100
+                  : (dayjs(new Date()).diff(startTime) / STAY_TIME) * 100
+              }
             />
             <div className="progress-text">
-              <p>FROM</p>
-              <p>TO</p>
+              <p>Start</p>
+              <p>Destination</p>
             </div>
           </div>
           <div className="speed">
-            <p>{driver?.fmsReport.speed}</p>
+            {isArrived ? null : <p>{driver?.fmsReport.speed}Km/h</p>}
           </div>
           <div className="driver">
             <p>Driver's Info</p>
             <div className="driver-info">
               <div className="driver-profile">
                 <img src={driver?.avatarUrl} />
-                <p>{driver?.name}</p>
               </div>
               <div className="driver-text">
-                <p>{`${driver?.name} is taking care of your kid!`}</p>
-                <p>{`${driver?.car.id}`}</p>
+                <p>
+                  <strong>{driver?.name}</strong>
+                  {` is taking care of your kid!`}
+                </p>
+                <p>{`${driver?.phoneNumber}`}</p>
               </div>
             </div>
           </div>
+          {isArrived ? (
+            <Footer text="Home" onClick={() => setRedirectPath('/')} />
+          ) : (
+            <Footer text="Map" onClick={() => setShowMap(true)} />
+          )}
         </>
       )}
     </MainLayout>

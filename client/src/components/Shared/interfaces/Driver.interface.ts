@@ -30,4 +30,5 @@ export interface IDriverInfo {
   journeys: Array<IJourneyInfo>
   nowRouteEdge: IRouteEdge
   destRouteEdge: IRouteEdge
+  phoneNumber: string
 }

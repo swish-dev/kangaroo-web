@@ -1,3 +1,10 @@
+.close-button {
+  position: absolute;
+  right: 25px;
+  top: 50px;
+  z-index: 5;
+}
+
 .info-text {
   font-size: 1.5rem;
   display: flex;
@@ -19,6 +26,8 @@
 }
 
 .speed {
+  display: flex;
+  justify-content: center;
   font-size: 2rem;
 }
 
@@ -27,16 +36,31 @@
   margin-top: 2rem;
   &-info {
     display: flex;
-    box-shadow: 0px 4px 10px rgb(51, 51, 51);
+    border-radius: 14px;
+    background-color: #232323;
+    padding: 1rem;
     margin-top: 1rem;
   }
   &-profile {
     display: flex;
     flex-direction: column;
     img {
+      width: 64px;
+      height: 64px;
       border-radius: 50%;
     }
   }
   &-text {
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    strong {
+      color: #fbe19d;
+      font-weight: bold;
+    }
+    p {
+      margin-bottom: 0.5rem;
+    }
   }
 }
