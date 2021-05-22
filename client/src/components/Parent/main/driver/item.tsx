@@ -2,6 +2,7 @@ import { useHistory } from 'react-router'
 import styled from 'styled-components'
 
 import { IDriverInfo } from '../../../Shared/interfaces/Driver.interface'
+import TouchBox from '../../components/TouchBox'
 
 export type DriverItemProps = Pick<IDriverInfo, 'id' | 'name' | 'avatarUrl'>
 
@@ -9,21 +10,23 @@ export default function DriverItem({ name, avatarUrl, id }: DriverItemProps) {
   const history = useHistory()
 
   return (
-    <Wrapper
-      onClick={() => {
-        history.push(`/driver/${id}`)
-      }}
-    >
-      <Img src={avatarUrl} />
-      <P>{name}</P>
-    </Wrapper>
+    <TouchBox style={{marginRight: '2rem'}}>
+      <Wrapper
+        onClick={() => {
+          history.push(`/driver/${id}`)
+        }}
+      >
+        <Img src={avatarUrl} />
+        <P>{name}</P>
+      </Wrapper>
+    </TouchBox>
   )
 }
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin-right: 2rem;
+  
 `
 
 const Img = styled.img`

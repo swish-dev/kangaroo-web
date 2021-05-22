@@ -44,7 +44,7 @@ export default function Login() {
           name="nickname"
         />
         <Submit theme="filled" onClick={handleLogin}>
-          Set
+          <Set>Set</Set>
         </Submit>
       </Wrapper>
     </MainLayout>
@@ -84,7 +84,13 @@ const Submit = styled(Button)`
   border-radius: 1rem;
   height: 5rem;
 
-  border: none;
-  font-size: 1.6rem;
-  font-weight: bold;
+  border: none;  
+  display:flex;
+  justify-content: center;
+  align-items: center;
 `
+
+const Set = styled.p`
+font-size: 1.6rem;
+  font-weight: bold;
+`;

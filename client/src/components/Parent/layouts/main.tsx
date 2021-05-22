@@ -26,6 +26,7 @@ export default function MainLayout(props: MainLayoutProps) {
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
+  background-color: ${Color.g100};
 `
 
 const Content = styled.div`
@@ -49,4 +50,8 @@ const Content = styled.div`
     background-color: ${Color.g100};
     color: white;
   }
+  .pressed{
+    background-color: ${Color.g1000};
+  }
+
 `
