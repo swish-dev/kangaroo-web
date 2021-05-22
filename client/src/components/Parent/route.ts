@@ -1,4 +1,4 @@
-import Parent from './index'
+import Parent from './main/index'
 import Login from './Login'
 
 const routes = [
