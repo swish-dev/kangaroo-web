@@ -2,11 +2,13 @@ import { useState, useEffect } from 'react'
 import { Cookies } from 'react-cookie'
 import { Redirect } from 'react-router'
 
-import { MainLayout } from './layouts/main'
+import { MainLayout } from '../layouts/main'
+import { KidsPart } from './kids'
 
 export default function Parent() {
   const [userId, setUserId] = useState(null)
   const [isLoading, setIsLoading] = useState(true)
+
   useEffect(() => {
     try {
       setIsLoading(true)
@@ -17,7 +19,13 @@ export default function Parent() {
       setIsLoading(false)
     } catch (err) {}
   }, [])
+
   if (isLoading) return <></>
   if (!userId) return <Redirect to="/login" />
-  return <MainLayout></MainLayout>
+
+  return (
+    <MainLayout>
+      <KidsPart />
+    </MainLayout>
+  )
 }
