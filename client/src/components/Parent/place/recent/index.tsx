@@ -1,15 +1,16 @@
 import styled from 'styled-components'
+
 import { useMe } from '../../hooks'
 import RecentReservationCard from './card'
 
 export default function RecentReservation() {
-  const userInfo = useMe()
+  const me = useMe()
 
   return (
     <Wrapper>
       <P>Recent reservation</P>
-      {userInfo?.journeys.map((v, i) => (
-        <RecentReservationCard key={v.id} {...v} />
+      {me?.journeys.map((journey) => (
+        <RecentReservationCard key={journey.id} {...journey} />
       ))}
     </Wrapper>
   )

@@ -1,14 +1,13 @@
 import styled from 'styled-components'
+import { Color } from '../../../Shared/contant/color.enum'
 import { IJourneyInfo } from '../../../Shared/interfaces/Journey.interface'
-import { getDate, getPlaceName } from '../../../Shared/utils/parser'
+import { getDate } from '../../../Shared/utils/parser'
 
 export type RecentReservationCardProps = IJourneyInfo
 
 export default function RecentReservationCard({
-  id,
   driver,
   arriveAt,
-
   arriveRouteEdge,
 }: RecentReservationCardProps) {
   const { name, avatarUrl } = driver
@@ -17,7 +16,7 @@ export default function RecentReservationCard({
   return (
     <Wrapper>
       <PlaceAndDate>
-        <P>{'Sinchon station'}</P>
+        <P style={{ color: 'white' }}>{arriveRouteEdge.name}</P>
         <P fw="normal" fs="1.4rem">
           {arriveDate}
         </P>
@@ -35,10 +34,9 @@ export default function RecentReservationCard({
 
 const Wrapper = styled.div`
   width: 100%;
-  padding: 2rem;
-  margin: 0.8rem;
-  background-color: #dfdfdf;
-  opacity: 0.7;
+  padding: 2rem 1.6rem;
+  margin: 0 auto 1.6rem;
+  background-color: ${Color.g300};
 
   display: flex;
   flex-direction: column;
