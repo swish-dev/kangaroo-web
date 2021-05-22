@@ -28,7 +28,7 @@ export default function Login() {
 
     try {
       await UserService.login({ nickname })
-      history.push('/parent')
+      history.push('/')
     } catch (err) {
       alert(err)
     }

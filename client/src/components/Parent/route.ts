@@ -6,23 +6,23 @@ import Driver from './Driver'
 
 const routes = [
   {
-    path: '/parent',
+    path: '/',
     component: Parent,
   },
   {
-    path: '/parent/login',
+    path: '/login',
     component: Login,
   },
   {
-    path: '/parent/place',
+    path: '/place',
     component: Place,
   },
   {
-    path: '/parent/onboard',
+    path: '/onboard',
     component: OnBoard,
   },
   {
-    path: '/parent/driver/:id',
+    path: '/driver/:id',
     component: Driver,
   },
 ]

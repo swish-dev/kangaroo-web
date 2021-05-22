@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useHistory } from 'react-router'
 import styled from 'styled-components'
-import { getPlaceName } from '../../Shared/utils/parser'
 
 import MainLayout from '../layouts/main'
 import RecentReservation from './recent'
@@ -23,7 +22,7 @@ export default function Place() {
     keyCode,
   }: React.KeyboardEvent<HTMLInputElement>) => {
     if (keyCode === 13) {
-      history.push('/parent/final-confirm')
+      history.push('/final-confirm')
     }
   }
 
