@@ -1,5 +1,6 @@
 import Parent from './main/index'
 import Login from './Login'
+import Place from './place'
 
 const routes = [
   {
@@ -9,6 +10,10 @@ const routes = [
   {
     path: '/parent/login',
     component: Login,
+  },
+  {
+    path: '/parent/place',
+    component: Place,
   },
 ]
 

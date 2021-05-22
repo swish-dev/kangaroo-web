@@ -4,6 +4,7 @@ import {
   UpdateKidDto,
   UpdateUserDto,
 } from '../dtos/user'
+import { IUserInfo } from '../interfaces/User.interface'
 import { getCookie, setCookie } from '../utils/cookie'
 import base from './api'
 
@@ -19,7 +20,7 @@ export const getMyId = () => {
 }
 
 export const getUserById = async (userId: string) => {
-  const { data } = await base().get(`/users/${userId}`)
+  const { data } = await base().get<IUserInfo>(`/users/${userId}`)
   return data
 }
 

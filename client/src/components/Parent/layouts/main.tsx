@@ -1,12 +1,13 @@
 import styled from 'styled-components'
-import { MainHeader } from '../headers/main'
+import MainHeader from '../headers/main'
+import BackHeader from '../headers/back'
 
 export default function MainLayout(props: any) {
-  const { withoutHeader } = props
+  const { withoutHeader, isBackHeader } = props
   return (
     <Wrapper>
       <Content>
-        {!withoutHeader && <MainHeader />}
+        {!withoutHeader && (isBackHeader ? <BackHeader /> : <MainHeader />)}
         {props.children}
       </Content>
     </Wrapper>
