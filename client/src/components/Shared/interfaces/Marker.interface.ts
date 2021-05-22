@@ -15,4 +15,5 @@ export interface IMarker {
   imageType: string
   lat: number
   lng: number
+  onClick?: () => void
 }

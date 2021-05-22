@@ -12,8 +12,8 @@ const IMAGE_SOURCE: IImageSource = {
   CAR_OCCUPIED: CarWithPerson,
 }
 const IMAGE_SIZE: IImageSize = {
-  CAR_FREE: [40, 30],
-  CAR_OCCUPIED: [40, 45],
+  CAR_FREE: [25, 20],
+  CAR_OCCUPIED: [30, 35],
 }
 
 declare global {
@@ -56,7 +56,7 @@ function Map({
     if (!map || markers.length === 0) return
 
     // 새로운 위치로 마커 생성
-    const curMarkers = markers.map(({ lat, lng, imageType }) => {
+    const curMarkers = markers.map(({ lat, lng, imageType, onClick }) => {
       const markerPos = new window.kakao.maps.LatLng(lat, lng)
       const markerImage = new window.kakao.maps.MarkerImage(
         IMAGE_SOURCE[imageType],
@@ -70,6 +70,11 @@ function Map({
         image: markerImage,
       })
       marker.setMap(map)
+      if (onClick) {
+        window.kakao.maps.event.addListener(marker, 'click', function () {
+          onClick()
+        })
+      }
       return marker
     })
     // 이전 마커 삭제

@@ -7,6 +7,8 @@ export interface IDriverInfo {
   age: number
   avatarUrl: string
   averageSpeed: number
+  lat: number
+  lng: number
   mbti?: string
   crimeHistory?: Array<{ time: string; type: string }>
   car: {

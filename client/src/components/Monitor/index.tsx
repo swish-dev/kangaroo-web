@@ -1,7 +1,9 @@
-import { useCallback, useEffect, useState } from 'react'
-import classNames from 'classnames'
+import { useEffect, useState } from 'react'
 import { MarkerImageType } from '../Shared/interfaces/Marker.interface'
 import { IDriverInfo } from '../Shared/interfaces/Driver.interface'
+import { IMarker } from '../Shared/interfaces/Marker.interface'
+import { getDrivers } from '../Shared/services/driver'
+import { useSetRequestInterval } from '../Shared/hooks/useSetRequestInterval'
 
 import Map from '../Shared/Map'
 import DriverDetail from './DriverDetail'
@@ -9,6 +11,7 @@ import DriverList from './DriverList'
 import UserList from './UserList'
 import styles from './style.scss'
 
+import classNames from 'classnames'
 const cx = classNames.bind(styles)
 
 const SIDEBAR_MENU = {
@@ -17,29 +20,29 @@ const SIDEBAR_MENU = {
 }
 
 function Monitor() {
-  const [markers, setMarkers] = useState([
-    {
-      imageType: MarkerImageType.CAR_FREE,
-      lat: 37.56572474944695,
-      lng: 126.97737353796997,
-    },
-    {
-      imageType: MarkerImageType.CAR_OCCUPIED,
-      lat: 37.567106516757505,
-      lng: 126.97727818430188,
-    },
-  ])
+  const [markers, setMarkers] = useState<IMarker[]>([])
+  const [selectedDriver, setSelectedDriver] = useState<IDriverInfo | null>(null)
+  const drivers: IDriverInfo[] = useSetRequestInterval(getDrivers, 1000) || []
   useEffect(() => {
-    const timer = setInterval(() => {
-      setMarkers((prev) =>
-        prev.map(({ lat, ...rest }) => ({ lat: lat + 0.0001, ...rest }))
-      )
-    }, 1000)
-    return () => clearInterval(timer)
-  }, [])
+    const driverMarkers =
+      drivers?.map((driver) => {
+        const { lat, lng, journeys } = driver
+        return {
+          lat,
+          lng,
+          imageType:
+            journeys.length === 0 ||
+            journeys[journeys.length - 1]?.status !== 'DRIVING'
+              ? MarkerImageType.CAR_FREE
+              : MarkerImageType.CAR_OCCUPIED,
+          onClick: () => setSelectedDriver(driver),
+        }
+      }) || []
+    setMarkers(driverMarkers)
+  }, [drivers])
 
   const [sidebarMenu, setSidebarMenu] = useState(SIDEBAR_MENU.USER)
-  const [selectedDriver, setSelectedDriver] = useState<IDriverInfo | null>(null)
+
   return (
     <div className="monitor">
       <div className="sidebar">

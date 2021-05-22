@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import UserService from '../../Shared/services/user'
 import MainLayout from '../layouts/main'
 import KidsPart from '../main/kids'
+import './style.scss'
 
 export default function OnBoard() {
   const [kids, setKids] = useState([])
