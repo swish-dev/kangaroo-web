@@ -1,5 +1,6 @@
 import { IJourneyInfo } from './Journey.interface'
 import { IFMSReport } from './FMS.interface'
+import { IRouteEdge } from './RouteEgde.interface'
 
 export interface IDriverInfo {
   id: string
@@ -9,7 +10,14 @@ export interface IDriverInfo {
   averageSpeed: number
   lat: number
   lng: number
-  mbti?: string
+  mbtis: Array<{
+    type: string
+    name: string
+  }>
+  reviews: Array<{
+    text: string
+    createdAt: Date
+  }>
   crimeHistory?: Array<{ time: string; type: string }>
   car: {
     id: string
@@ -18,4 +26,6 @@ export interface IDriverInfo {
   }
   fmsReport: IFMSReport
   journeys: Array<IJourneyInfo>
+  nowRouteEdge: IRouteEdge
+  destRouteEdge: IRouteEdge
 }
