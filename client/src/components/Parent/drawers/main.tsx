@@ -1,4 +1,4 @@
-import { Drawer, createMuiTheme, ThemeProvider } from '@material-ui/core'
+import { Drawer } from '@material-ui/core'
 import styled from 'styled-components'
 
 export type MainDrawerProps = {

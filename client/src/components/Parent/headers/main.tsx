@@ -2,7 +2,7 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import MainDrawer from '../drawers/main'
 
-export function MainHeader() {
+export default function MainHeader() {
   const [open, setOpen] = useState(false)
 
   const handleOpen = () => {

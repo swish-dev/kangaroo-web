@@ -7,7 +7,7 @@ export default function Footer() {
       <Button to="/schedule">
         <P>schedule</P>
       </Button>
-      <Button to="/place">
+      <Button to="/parent/place">
         <P>Call now</P>
       </Button>
     </Wrapper>

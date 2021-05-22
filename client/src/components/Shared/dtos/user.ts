@@ -1,4 +1,4 @@
-import { IKid } from '../interfaces/kid.interface'
+import { IKid } from '../interfaces/Kid.interface'
 import { IUserInfo } from '../interfaces/User.interface'
 
 export type CreateUserDto = Pick<IUserInfo, 'nickname'>

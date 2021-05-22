@@ -12,7 +12,7 @@ export default function Parent() {
   const { userId, isLoading } = useGetUserId()
 
   if (isLoading) return <></>
-  if (!userId) return <Redirect to="/login" />
+  if (!userId) return <Redirect to="/parent/login" />
 
   return (
     <MainLayout>
