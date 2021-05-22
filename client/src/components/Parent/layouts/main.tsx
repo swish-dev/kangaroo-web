@@ -32,16 +32,13 @@ const Content = styled.div`
   flex: 1;
   align-self: center;
   position: relative;
-  padding-left: 1.8rem;
-  padding-right: 1.8rem;
+  padding-left: 1.6rem;
+  padding-right: 1.6rem;
 
   background-color: ${Color.background};
   color: white;
   input {
     background-color: ${Color.g100};
     color: white;
-  }
-  button {
-    background-color: ${Color.main};
   }
 `

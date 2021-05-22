@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 import UserService from '../../Shared/services/user'
+import Button from '../components/Button'
 import MainLayout from '../layouts/main'
 
 export default function Login() {
@@ -42,7 +43,9 @@ export default function Login() {
           onChange={handleNicknameChange}
           name="nickname"
         />
-        <Submit onClick={handleLogin}>Set</Submit>
+        <Submit theme="filled" onClick={handleLogin}>
+          Set
+        </Submit>
       </Wrapper>
     </MainLayout>
   )
@@ -71,7 +74,7 @@ const Input = styled.input`
   padding-left: 2rem;
 `
 
-const Submit = styled.button`
+const Submit = styled(Button)`
   position: absolute;
   left: 0;
   right: 0;
@@ -82,7 +85,6 @@ const Submit = styled.button`
   height: 5rem;
 
   border: none;
-  background: #c4c4c4;
   font-size: 1.6rem;
   font-weight: bold;
 `

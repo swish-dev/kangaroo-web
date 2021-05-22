@@ -1,16 +1,26 @@
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { getDrivers } from '../../../Shared/services/driver'
 
 import DriverItem from './item'
 
 export default function Driver() {
-  const dummy = ['James', 'Richard', 'James', 'Richard', 'James', 'Richard']
+  const [drivers, setDrivers] = useState([])
+
+  const getDriverData = async () => {
+    const data = await getDrivers()
+    setDrivers(data)
+  }
+  useEffect(() => {
+    getDriverData()
+  })
 
   return (
     <Wrapper>
       <P>Best drivers around you</P>
       <ItemWrapper>
-        {dummy.map((v, i) => (
-          <DriverItem key={i} name={v} />
+        {drivers?.slice(0, 8).map((v: any, i) => (
+          <DriverItem key={i} name={v.name} avatarUrl={v.avatarUrl} id={v.id} />
         ))}
       </ItemWrapper>
     </Wrapper>

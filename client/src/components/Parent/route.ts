@@ -2,6 +2,7 @@ import Parent from './main/index'
 import Login from './Login'
 import Place from './place'
 import OnBoard from './OnBoard'
+import Driver from './Driver'
 
 const routes = [
   {
@@ -19,6 +20,10 @@ const routes = [
   {
     path: '/parent/onboard',
     component: OnBoard,
+  },
+  {
+    path: '/parent/driver/:id',
+    component: Driver,
   },
 ]
 

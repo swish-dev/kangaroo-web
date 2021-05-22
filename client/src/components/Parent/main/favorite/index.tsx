@@ -25,7 +25,7 @@ const Wrapper = styled.div`
 
 const P = styled.p`
   font-size: 1.8rem;
-  font-weight: bold;
+  font-weight: 700;
   margin-bottom: 1.6rem;
 `
 const ItemWrapper = styled.div`

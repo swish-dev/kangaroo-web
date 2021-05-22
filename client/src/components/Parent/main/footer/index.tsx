@@ -1,15 +1,18 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom'
+import { Color } from '../../../Shared/contant/color.enum'
 
 export default function Footer() {
   return (
     <Wrapper>
-      <Button to="/schedule">
-        <P>schedule</P>
-      </Button>
-      <Button to="/parent/place">
-        <P>Call now</P>
-      </Button>
+      <ButtonWrapper>
+        <Button to="/parent/schedule" theme="outlined">
+          <P>schedule</P>
+        </Button>
+        <Button to="/parent/place" theme="filled">
+          <P>Call now</P>
+        </Button>
+      </ButtonWrapper>
     </Wrapper>
   )
 }
@@ -26,15 +29,30 @@ const Wrapper = styled.div`
   justify-content: space-between;
   margin: 0 auto;
 `
-
+const ButtonWrapper = styled.div`
+  display: flex;
+  width: 100%;
+  padding: 0 1.1rem;
+`
 const Button = styled(Link)`
   display: flex;
   flex: 1;
   margin: 0 0.5rem;
   justify-content: center;
   align-items: center;
-  border-radius: 1rem;
-  background: grey;
+  border-radius: 1.4rem;
+
+  ${(props) =>
+    props.theme === 'outlined' &&
+    css`
+      border: 1px solid ${Color.main};
+      color: ${Color.main};
+    `};
+  ${(props) =>
+    props.theme === 'filled' &&
+    css`
+      background-color: ${Color.main};
+    `};
 `
 
 const P = styled.p`

@@ -1,4 +1,5 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { Color } from '../../../Shared/contant/color.enum'
 import UserService from '../../../Shared/services/user'
 
 export type KidsPartProps = {
@@ -65,15 +66,26 @@ const AddButton = styled.button`
   padding: 1.2rem 2.4rem;
   border: none;
   background: transparent;
+  cursor: pointer;
 `
 
 const Kid = styled.div<{ selected: boolean }>`
   width: fit-content;
   height: fit-content;
-  padding: 1.2rem 2.4rem;
-  ${(props) => props.selected && `background:#DFDFDF`};
-  border-radius: 999px;
+  padding: 1.3rem 2.3rem;
+  background-color: ${(props) => props.selected && Color.g1000};
+  border-radius: 1.4rem;
+  cursor: pointer;
+  ${(props) =>
+    props.selected &&
+    css`
+      p {
+        opacity: 1;
+      }
+    `}
 `
 const P = styled.p`
   font-size: 1.6rem;
+  color: white;
+  opacity: 0.3;
 `

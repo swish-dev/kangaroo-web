@@ -1,11 +1,12 @@
 import styled from 'styled-components'
+import Strong from '../../components/Strong'
 
 export default function Title({ kid }: any) {
   return (
     <P>
-      {`Hi, Where should I take\n
-      ${kid?.name}?
-`}
+      {`Hi, Where should I take`}
+      <br />
+      <Strong>{kid?.name}?</Strong>
     </P>
   )
 }
