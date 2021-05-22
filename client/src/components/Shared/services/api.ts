@@ -60,7 +60,6 @@ class RequestConfig {
 
 const base = () => {
   const requestConfig = new RequestConfig(process.env.REACT_APP_API_HOST)
-
   return axios.create(requestConfig)
 }
 

@@ -1,10 +1,19 @@
 import { useEffect, useState } from 'react'
+import classNames from 'classnames'
 import { MarkerImageType } from '../Shared/interfaces/Marker.interface'
 
 import Map from '../Shared/Map'
-import TaxiList from './TaxiList'
+import DriverList from './DriverList'
 import UserList from './UserList'
-import './style.scss'
+import styles from './style.scss'
+
+const cx = classNames.bind(styles)
+
+const SIDEBAR_MENU = {
+  DRIVER: 'DRIVER',
+  USER: 'USER',
+  CAR: 'CAR',
+}
 
 function Monitor() {
   const [markers, setMarkers] = useState([
@@ -19,7 +28,6 @@ function Monitor() {
       lng: 126.97727818430188,
     },
   ])
-
   useEffect(() => {
     const timer = setInterval(() => {
       setMarkers((prev) =>
@@ -29,11 +37,30 @@ function Monitor() {
     return () => clearInterval(timer)
   }, [])
 
+  const [sidebarMenu, setSidebarMenu] = useState(SIDEBAR_MENU.USER)
+
   return (
-    <div>
-      <div className="list-box">
-        <TaxiList />
-        <UserList />
+    <div className="monitor">
+      <div className="sidebar">
+        <div className="select">
+          <p
+            className={cx('selected-base', {
+              selected: sidebarMenu === SIDEBAR_MENU.USER,
+            })}
+            onClick={() => setSidebarMenu(SIDEBAR_MENU.USER)}
+          >
+            User
+          </p>
+          <p
+            className={cx('selected-base', {
+              selected: sidebarMenu === SIDEBAR_MENU.DRIVER,
+            })}
+            onClick={() => setSidebarMenu(SIDEBAR_MENU.DRIVER)}
+          >
+            Driver
+          </p>
+        </div>
+        {sidebarMenu === SIDEBAR_MENU.USER ? <UserList /> : <DriverList />}
       </div>
       <Map {...{ markers }} />
     </div>

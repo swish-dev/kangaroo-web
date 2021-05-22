@@ -12,5 +12,5 @@ export interface IDriverInfo {
     name: string
     year: Date
   }
-  journeys?: Array<IJourneyInfo>
+  journeys: Array<IJourneyInfo>
 }
