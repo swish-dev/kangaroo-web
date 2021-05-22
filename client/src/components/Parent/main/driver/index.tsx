@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
+import { IDriverInfo } from '../../../Shared/interfaces/Driver.interface'
 import { getDrivers } from '../../../Shared/services/driver'
 
 import DriverItem from './item'
 
 export default function Driver() {
-  const [drivers, setDrivers] = useState([])
+  const [drivers, setDrivers] = useState<Array<IDriverInfo>>()
 
   const getDriverData = async () => {
     const data = await getDrivers()
@@ -13,7 +14,7 @@ export default function Driver() {
   }
   useEffect(() => {
     getDriverData()
-  })
+  }, [])
 
   return (
     <Wrapper>

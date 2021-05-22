@@ -1,10 +1,12 @@
+import dayjs from 'dayjs'
+
 declare global {
   interface Window {
     kakao: any
   }
 }
 export const getDate = (at: Date) => {
-  const d = new Date(at).getDate
+  const d = dayjs(at).format('YY.DD')
   return d
 }
 
