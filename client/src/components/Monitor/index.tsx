@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import classNames from 'classnames'
+import dayjs from 'dayjs'
 
 import { MarkerImageType } from '../Shared/interfaces/Marker.interface'
 import { IDriverInfo } from '../Shared/interfaces/Driver.interface'
@@ -20,6 +21,7 @@ export enum MonitorSidebarMenuType {
   User,
 }
 
+const THRESHOLD = 3
 const { Driver, User } = MonitorSidebarMenuType
 const { CAR_FREE, CAR_OCCUPIED } = MarkerImageType
 
@@ -54,6 +56,14 @@ export default function MonitorPage() {
 
   const handleSidebarChange = (input: MonitorSidebarMenuType) => () => {
     setMenuType(input)
+  }
+
+  const isDateDiffBigger = (date: Date, threshold: number) => {
+    if (!date) return true
+    
+    const diff = Math.abs(dayjs(date).diff(dayjs(), 'day'))
+    if (diff > threshold) return true
+    return false
   }
 
   return (
@@ -98,7 +108,11 @@ export default function MonitorPage() {
                           {isDriver(record) ? record.name : record.nickname}
                         </b>
                       </p>
-                      <p>{journeys?.reverse()[0]?.status?.toLowerCase()}</p>
+                      <p>
+                        {journeys?.reverse()[0]?.status === 'COMPLETE' && isDateDiffBigger(journeys?.reverse()[0]?.arriveAt, THRESHOLD) ?
+                        journeys?.reverse()[0]?.status?.toLowerCase()
+                        :''}
+                      </p>
                     </li>
                   )
                 }
