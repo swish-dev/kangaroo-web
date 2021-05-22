@@ -1,7 +1,7 @@
-import Monitor from './index'
+import MonitorPage from './index'
 
 const route = {
   path: '/monitor',
-  component: Monitor,
+  component: MonitorPage,
 }
 export default route

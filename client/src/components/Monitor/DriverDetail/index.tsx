@@ -8,15 +8,14 @@ import { IDriverInfo } from '../../Shared/interfaces/Driver.interface'
 import carImage from '../../../assets/images/car_big.png'
 import './style.scss'
 
-interface Props {
-  driver: IDriverInfo
-  setSelectedDriver: (driver: IDriverInfo | null) => void
+export type DriverDetailProps = Pick<
+  IDriverInfo,
+  'id' | 'name' | 'journeys'
+> & {
+  onBack: () => void
 }
 
-function DriverDetail({
-  driver: { id, name, journeys },
-  setSelectedDriver,
-}: Props) {
+function DriverDetail({ id, name, journeys, onBack }: DriverDetailProps) {
   const { data: driver } = usePollingFetch(
     async () => await getDriverById(id),
     2000
@@ -32,7 +31,7 @@ function DriverDetail({
     <div className="driver-detail">
       <div className="detail-header">
         <div className="header-left">
-          <IoIosArrowBack onClick={() => setSelectedDriver(null)} />
+          <IoIosArrowBack onClick={onBack} />
           <p>{name}</p>
         </div>
         {journeys[journeys.length - 1]?.status.toLowerCase()}
