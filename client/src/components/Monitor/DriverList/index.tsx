@@ -1,20 +1,32 @@
+import { memo } from 'react'
 import { getDrivers } from '../../Shared/services/driver'
 import { useSetRequestInterval } from '../../Shared/hooks/useSetRequestInterval'
 import { IDriverInfo } from '../../Shared/interfaces/Driver.interface'
 import './style.scss'
 
-function DriverList() {
+interface Props {
+  setSelectedDriver: (driver: IDriverInfo | null) => void
+}
+
+function DriverList({ setSelectedDriver }: Props) {
   const drivers: IDriverInfo[] = useSetRequestInterval(getDrivers, 5000) || []
 
   const generateDriverList = () => {
-    return drivers?.map(({ id, name, journeys }) => (
-      <li className="driver-row" key={id}>
-        <p>
-          <b>{name}</b>
-        </p>
-        <p>{journeys[journeys.length - 1]?.status?.toLowerCase()}</p>
-      </li>
-    ))
+    return drivers?.map((driver) => {
+      const { id, name, journeys } = driver
+      return (
+        <li
+          className="driver-row"
+          key={id}
+          onClick={() => setSelectedDriver(driver)}
+        >
+          <p>
+            <b>{name}</b>
+          </p>
+          <p>{journeys[journeys.length - 1]?.status?.toLowerCase()}</p>
+        </li>
+      )
+    })
   }
 
   return (

@@ -1,5 +1,6 @@
 import { IFMSReport } from './FMS.interface'
 import { IJourneyInfo } from './Journey.interface'
+import { IFMSReport } from './FMS.interface'
 
 export interface IDriverInfo {
   id: string
@@ -11,9 +12,10 @@ export interface IDriverInfo {
   crimeHistory?: Array<{ time: string; type: string }>
   car: {
     id: string
-    name: string
-    year: Date
+    type: string
+    year: number
   }
+  fmsReport: IFMSReport
   journeys: Array<IJourneyInfo>
   fmsReport?: Omit<IFMSReport, 'id'>
 }

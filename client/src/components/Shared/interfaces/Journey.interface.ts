@@ -6,8 +6,9 @@ export interface IJourneyInfo {
   userId: string
   kidId: string
   driverId: string
+
   driver: IDriverInfo
-  status: 'pending' | 'driving' | 'complete'
+  status: 'PENDING' | 'DRIVING' | 'COMPLETE'
   departAt: Date
   arriveAt: Date
   departRouteEdge: IRouteEdge

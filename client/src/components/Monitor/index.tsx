@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import classNames from 'classnames'
 import { MarkerImageType } from '../Shared/interfaces/Marker.interface'
+import { IDriverInfo } from '../Shared/interfaces/Driver.interface'
 
 import Map from '../Shared/Map'
+import DriverDetail from './DriverDetail'
 import DriverList from './DriverList'
 import UserList from './UserList'
 import styles from './style.scss'
@@ -12,7 +14,6 @@ const cx = classNames.bind(styles)
 const SIDEBAR_MENU = {
   DRIVER: 'DRIVER',
   USER: 'USER',
-  CAR: 'CAR',
 }
 
 function Monitor() {
@@ -38,29 +39,39 @@ function Monitor() {
   }, [])
 
   const [sidebarMenu, setSidebarMenu] = useState(SIDEBAR_MENU.USER)
-
+  const [selectedDriver, setSelectedDriver] = useState<IDriverInfo | null>(null)
   return (
     <div className="monitor">
       <div className="sidebar">
-        <div className="select">
-          <p
-            className={cx('selected-base', {
-              selected: sidebarMenu === SIDEBAR_MENU.USER,
-            })}
-            onClick={() => setSidebarMenu(SIDEBAR_MENU.USER)}
-          >
-            User
-          </p>
-          <p
-            className={cx('selected-base', {
-              selected: sidebarMenu === SIDEBAR_MENU.DRIVER,
-            })}
-            onClick={() => setSidebarMenu(SIDEBAR_MENU.DRIVER)}
-          >
-            Driver
-          </p>
-        </div>
-        {sidebarMenu === SIDEBAR_MENU.USER ? <UserList /> : <DriverList />}
+        {selectedDriver ? (
+          <DriverDetail {...{ setSelectedDriver, driver: selectedDriver }} />
+        ) : (
+          <>
+            <div className="select">
+              <p
+                className={cx('selected-base', {
+                  selected: sidebarMenu === SIDEBAR_MENU.USER,
+                })}
+                onClick={() => setSidebarMenu(SIDEBAR_MENU.USER)}
+              >
+                User
+              </p>
+              <p
+                className={cx('selected-base', {
+                  selected: sidebarMenu === SIDEBAR_MENU.DRIVER,
+                })}
+                onClick={() => setSidebarMenu(SIDEBAR_MENU.DRIVER)}
+              >
+                Driver
+              </p>
+            </div>
+            {sidebarMenu === SIDEBAR_MENU.USER ? (
+              <UserList />
+            ) : (
+              <DriverList {...{ setSelectedDriver }} />
+            )}
+          </>
+        )}
       </div>
       <Map {...{ markers }} />
     </div>

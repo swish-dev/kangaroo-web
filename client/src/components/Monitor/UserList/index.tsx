@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { getUsers } from '../../Shared/services/user'
 import { useSetRequestInterval } from '../../Shared/hooks/useSetRequestInterval'
 import { IUserInfo } from '../../Shared/interfaces/User.interface'
@@ -25,4 +26,4 @@ function UserList() {
   )
 }
 
-export default UserList
+export default memo(UserList)
