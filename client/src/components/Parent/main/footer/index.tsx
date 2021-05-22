@@ -4,16 +4,19 @@ import { Color } from '../../../Shared/contant/color.enum'
 
 export default function Footer() {
   return (
+    <>
+    <div style={{height:'12rem'}}/>
     <Wrapper>
       <ButtonWrapper>
-        <Button to="/schedule" theme="outlined">
+        {/* <Button to="/schedule" theme="outlined">
           <P>schedule</P>
-        </Button>
+        </Button> */}
         <Button to="/place" theme="filled">
           <P>Call now</P>
         </Button>
       </ButtonWrapper>
     </Wrapper>
+    </>
   )
 }
 
@@ -32,12 +35,12 @@ const Wrapper = styled.div`
 const ButtonWrapper = styled.div`
   display: flex;
   width: 100%;
-  padding: 0 1.1rem;
+  padding: 0 1.6rem;
 `
 const Button = styled(Link)`
   display: flex;
   flex: 1;
-  margin: 0 0.5rem;
+  /* margin: 0 0.5rem; */
   justify-content: center;
   align-items: center;
   border-radius: 1.4rem;
@@ -59,4 +62,5 @@ const Button = styled(Link)`
 const P = styled.p`
   font-size: 1.6rem;
   height: fit-content;
+  font-weight: 700;
 `
