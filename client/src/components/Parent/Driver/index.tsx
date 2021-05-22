@@ -1,3 +1,4 @@
+import React from 'react'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -13,17 +14,21 @@ export default function Driver() {
   const { id } = useParams<{ id: string }>()
   const driver = useDriver(id)
 
-  if (!driver) return null
+
 
   return (
     <MainLayout isBackHeader headerTitle="Driver's info">
-      <DriverProfile {...driver} />
-      <DescSection>
-        <StarRate score={driver.rating} mb="1.5rem" />
-        <Desc>{driver.description}</Desc>
-      </DescSection>
-      <Mbtis mbtis={driver.mbtis} />
-      <Reviews reviews={driver.reviews} />
+      {driver && 
+        <React.Fragment>
+          <DriverProfile {...driver} />
+          <DescSection>
+            <StarRate score={driver.rating} mb="1.5rem" />
+            <Desc>{driver.description}</Desc>
+          </DescSection>
+          <Mbtis mbtis={driver.mbtis} />
+          <Reviews reviews={driver.reviews} />
+        </React.Fragment>
+      }
     </MainLayout>
   )
 }

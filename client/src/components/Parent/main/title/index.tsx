@@ -6,7 +6,7 @@ export default function Title({ kid }: any) {
     <P>
       {`Hi, Where should I take`}
       <br />
-      <Strong>{kid?.name}?</Strong>
+      <Strong>{kid?.name}</Strong>?
     </P>
   )
 }
@@ -15,4 +15,5 @@ const P = styled.p`
   font-size: 2.4rem;
   font-weight: bold;
   margin-bottom: 3.6rem;
+  line-height: 28.13px;
 `

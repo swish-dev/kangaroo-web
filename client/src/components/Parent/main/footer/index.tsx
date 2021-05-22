@@ -4,6 +4,8 @@ import { Color } from '../../../Shared/contant/color.enum'
 
 export default function Footer() {
   return (
+    <>
+    <div style={{height:'12rem'}}/>
     <Wrapper>
       <ButtonWrapper>
         {/* <Button to="/schedule" theme="outlined">
@@ -14,6 +16,7 @@ export default function Footer() {
         </Button>
       </ButtonWrapper>
     </Wrapper>
+    </>
   )
 }
 
