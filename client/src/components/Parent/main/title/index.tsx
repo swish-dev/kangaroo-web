@@ -1,11 +1,11 @@
 import styled from 'styled-components'
 
-export default function Title() {
+export default function Title({ kid }: any) {
   return (
     <P>
-      Hi, Where should I take
-      <br />
-      Minsu?
+      {`Hi, Where should I take\n
+      ${kid?.name}?
+`}
     </P>
   )
 }

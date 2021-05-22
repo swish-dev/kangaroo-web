@@ -1,21 +1,23 @@
-import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import UserService from '../../../Shared/services/user'
 
-export default function KidsPart() {
-  const id = UserService.getMyId()
-  const [kids, setKids] = useState([])
-  const [isSelected, setIsSelected] = useState(0)
-  const handleClick = (i: number) => {
-    setIsSelected(i)
-  }
-  useEffect(() => {
-    handleGetKids()
-  }, [])
+export type KidsPartProps = {
+  kids: Array<any>
+  setKids: any
+  selectedKid: number
+  setSelectedKid: any
+}
 
-  const handleGetKids = async () => {
-    const data = await UserService.getKids(id)
-    setKids(data)
+export default function KidsPart({
+  kids,
+  setKids,
+  selectedKid,
+  setSelectedKid,
+}: KidsPartProps) {
+  const id = UserService.getMyId()
+
+  const handleClick = (i: number) => {
+    setSelectedKid(i)
   }
 
   const handleAddKid = async () => {
@@ -25,6 +27,8 @@ export default function KidsPart() {
       avatarUrl:
         'https://pixabay.com/ko/photos/%EB%8F%85%EC%88%98%EB%A6%AC-%EC%83%88-%EC%9C%A1%EC%8B%9D-%EB%8F%99%EB%AC%BC-%EC%B4%88%EC%83%81%ED%99%94-5083248/',
     })
+
+    setKids(data)
   }
 
   return (
@@ -34,7 +38,7 @@ export default function KidsPart() {
           onClick={() => {
             handleClick(i)
           }}
-          selected={i === isSelected}
+          selected={i === selectedKid}
           key={i}
         >
           <P>{v.name}</P>

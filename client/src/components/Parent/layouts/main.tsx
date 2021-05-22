@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import MainHeader from '../headers/main'
 import BackHeader from '../headers/back'
+import { Color } from '../../Shared/contant/color.enum'
 
 export default function MainLayout(props: any) {
   const { withoutHeader, isBackHeader } = props
@@ -33,4 +34,14 @@ const Content = styled.div`
   position: relative;
   padding-left: 1.8rem;
   padding-right: 1.8rem;
+
+  background-color: ${Color.background};
+  color: white;
+  input {
+    background-color: ${Color.g100};
+    color: white;
+  }
+  button {
+    background-color: ${Color.main};
+  }
 `

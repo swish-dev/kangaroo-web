@@ -64,10 +64,11 @@ const P = styled.p`
 
 const Input = styled.input`
   width: 100%;
-  height: 3rem;
+  height: 4.5rem;
   border: none;
   border-bottom: 1px solid black;
   font-size: 1.8rem;
+  padding-left: 2rem;
 `
 
 const Submit = styled.button`

@@ -1,4 +1,3 @@
-import { IFMSReport } from './FMS.interface'
 import { IJourneyInfo } from './Journey.interface'
 import { IFMSReport } from './FMS.interface'
 
@@ -17,5 +16,4 @@ export interface IDriverInfo {
   }
   fmsReport: IFMSReport
   journeys: Array<IJourneyInfo>
-  fmsReport?: Omit<IFMSReport, 'id'>
 }
