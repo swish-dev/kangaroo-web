@@ -33,7 +33,7 @@ export default function Parent() {
       <Title kid={kids[selectedKid]} />
       <Favorite />
       <Driver />
-      <Footer />
+      <Footer kid={kids[selectedKid]} />
     </MainLayout>
   )
 }

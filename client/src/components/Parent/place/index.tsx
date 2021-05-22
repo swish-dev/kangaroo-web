@@ -1,15 +1,22 @@
 import React, { useState } from 'react'
-import { useHistory } from 'react-router'
+import { useHistory, useLocation } from 'react-router'
 import styled from 'styled-components'
+import JourneyService from '../../Shared/services/journey'
+import UserService from '../../Shared/services/user'
 
 import MainLayout from '../layouts/main'
 import RecentReservation from './recent'
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 export default function Place() {
   const [depart, setDepart] = useState('Pick Up Location')
   const [arrive, setArrive] = useState('Where to?')
   const history = useHistory()
-
+  const query = useQuery();
+   
   const handleDepart = ({ target: { value } }: any) => {
     setDepart(value)
   }
@@ -18,10 +25,13 @@ export default function Place() {
     setArrive(value)
   }
 
-  const handleEnterKey = ({
+  const handleEnterKey = async ({
     keyCode,
   }: React.KeyboardEvent<HTMLInputElement>) => {
     if (keyCode === 13) {
+      const userId= UserService.getMyId();
+      const kid = query.get('kids');
+      await JourneyService.createJourney({userId, kidIds:[kid as string]});
       history.push('/onboard')
     }
   }
