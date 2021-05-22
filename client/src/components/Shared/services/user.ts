@@ -1,13 +1,13 @@
 import {
-  CreateKidDTO,
-  CreateUserDTO,
-  UpdateKidDTO,
-  UpdateUserDTO,
+  CreateKidDto,
+  CreateUserDto,
+  UpdateKidDto,
+  UpdateUserDto,
 } from '../dtos/user'
 import { getCookie, setCookie } from '../utils/cookie'
 import base from './api'
 
-export const login = async (data: CreateUserDTO) => {
+export const login = async (data: CreateUserDto) => {
   const res = await base().post('/users', data)
 
   setCookie('userId', res.data.id)
@@ -23,7 +23,7 @@ export const getUserById = async (userId: string) => {
   return data
 }
 
-export const updateUser = async (userId: string, data: UpdateUserDTO) => {
+export const updateUser = async (userId: string, data: UpdateUserDto) => {
   const res = await base().patch(`/users/${userId}`, data)
   return res.data
 }
@@ -38,7 +38,7 @@ export const getKids = async (userId: string) => {
   return data
 }
 
-export const addKid = async (userId: string, data: CreateKidDTO) => {
+export const addKid = async (userId: string, data: CreateKidDto) => {
   const res = await base().post(`/users/${userId}/kids`, data)
   return res.data
 }
@@ -46,13 +46,13 @@ export const addKid = async (userId: string, data: CreateKidDTO) => {
 export const updateKid = async (
   userId: string,
   kidId: string,
-  data: UpdateKidDTO
+  data: UpdateKidDto
 ) => {
   const res = await base().patch(`/users/${userId}/kids/${kidId}`, data)
   return res.data
 }
 
-const userService = {
+const UserService = {
   login,
   getMyId,
   getUserById,
@@ -63,4 +63,4 @@ const userService = {
   updateKid,
 }
 
-export default userService
+export default UserService

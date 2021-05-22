@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import userService from '../../../Shared/services/user'
+import UserService from '../../../Shared/services/user'
 
 export function KidsPart() {
-  const id = userService.getMyId()
+  const id = UserService.getMyId()
   const [kids, setKids] = useState([])
 
   useEffect(() => {
@@ -11,12 +11,12 @@ export function KidsPart() {
   }, [])
 
   const handleGetKids = async () => {
-    const data = await userService.getKids(id)
+    const data = await UserService.getKids(id)
     setKids(data)
   }
 
   const handleAddKid = async () => {
-    const data = await userService.addKid(id, {
+    const data = await UserService.addKid(id, {
       name: 'n',
       age: 7,
       avatarUrl:

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
-import userService from '../../Shared/services/user'
+import UserService from '../../Shared/services/user'
 
 export default function Login() {
   const [nickname, setNickname] = useState('')
@@ -16,7 +16,7 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      await userService.login({ nickname })
+      await UserService.login({ nickname })
       history.push('/parent')
     } catch (err) {
       alert(err)
