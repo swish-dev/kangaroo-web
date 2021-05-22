@@ -25,6 +25,5 @@ const Wrapper = styled.div`
   height: 4.4rem;
 
   display: flex;
-  padding: 0 2rem 0 2rem;
   align-items: center;
 `
