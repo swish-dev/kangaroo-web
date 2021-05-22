@@ -1,7 +1,7 @@
-import Sample from './index'
+import Parent from './index'
 
 const route = {
   path: '/parent',
-  component: Sample,
+  component: Parent,
 }
 export default route

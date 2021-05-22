@@ -1,6 +1,3 @@
 {
-    "conventionalCommits.scopes": [
-        "server",
-        "client"
-    ]
+  "conventionalCommits.scopes": ["server", "client", "parent"]
 }
