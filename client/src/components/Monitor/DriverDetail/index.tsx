@@ -2,6 +2,7 @@ import { memo } from 'react'
 import dayjs from 'dayjs'
 import { IoIosArrowBack } from 'react-icons/io'
 import { useSetRequestInterval } from '../../Shared/hooks/useSetRequestInterval'
+import { getDriverById } from '../../Shared/services/driver'
 
 import { IDriverInfo } from '../../Shared/interfaces/Driver.interface'
 import carImage from '../../../assets/images/car_big.png'
@@ -12,19 +13,12 @@ interface Props {
   setSelectedDriver: (driver: IDriverInfo | null) => void
 }
 
-const fmsDATA = {
-  driverId: 'string',
-  timestamp: new Date(),
-  speed: 80,
-  brakePos: 0.1,
-  brakeStatus: 'GREAT',
-  externalLampStatus: true,
-  accelPedalPos: 0.5,
-  batterSupplyVoltage: 50,
-}
-
 function DriverDetail({ driver, setSelectedDriver }: Props) {
-  const { name, journeys } = driver
+  const { id, name, journeys } = driver
+  const { fmsReport }: IDriverInfo = useSetRequestInterval(
+    async () => await getDriverById(id),
+    2000
+  )
   return (
     <div className="driver-detail">
       <div className="detail-header">
@@ -39,13 +33,13 @@ function DriverDetail({ driver, setSelectedDriver }: Props) {
         <div className="speed">
           <p>Speed</p>
           <p>
-            <strong>{fmsDATA.speed}</strong>
+            <strong>{fmsReport?.speed}</strong>
           </p>
           <div className="progress-bar">
             <div
               className="actual-bar"
               style={{
-                height: `${100 - Math.floor((fmsDATA.speed / 120) * 100)}%`,
+                height: `${100 - Math.floor((fmsReport?.speed / 60) * 100)}%`,
               }}
             ></div>
           </div>
@@ -55,37 +49,37 @@ function DriverDetail({ driver, setSelectedDriver }: Props) {
         <div className="info-cell">
           <p>Timestamp</p>
           <p>
-            <strong>{dayjs(fmsDATA.timestamp).format('HH:mm:ss')}</strong>
+            <strong>{dayjs(new Date()).format('HH:mm:ss')}</strong>
           </p>
         </div>
         <div className="info-cell">
           <p>Accel Pedal Position</p>
           <p>
-            <strong>{fmsDATA.accelPedalPos}</strong>
+            <strong>{fmsReport?.accelPedalPos.toFixed(2)}</strong>
           </p>
         </div>
         <div className="info-cell">
           <p>Brake Position</p>
           <p>
-            <strong>{fmsDATA.brakePos}</strong>
+            <strong>{fmsReport?.brakePedalPos.toFixed(2)}</strong>
           </p>
         </div>
         <div className="info-cell">
           <p>Brake Status</p>
           <p>
-            <strong>{fmsDATA.brakeStatus}</strong>
+            <strong>{fmsReport?.brakeStatus}</strong>
           </p>
         </div>
         <div className="info-cell">
           <p>Battery Supply Voltage</p>
           <p>
-            <strong>{fmsDATA.batterSupplyVoltage}</strong>
+            <strong>{fmsReport?.batterySupplyVoltage}</strong>
           </p>
         </div>
         <div className="info-cell">
           <p>External Lamp Status</p>
           <p>
-            <strong>{fmsDATA.externalLampStatus ? 'On' : 'Off'}</strong>
+            <strong>{fmsReport?.externalLampStatus ? 'On' : 'Off'}</strong>
           </p>
         </div>
       </div>

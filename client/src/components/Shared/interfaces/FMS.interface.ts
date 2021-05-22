@@ -2,9 +2,9 @@ export interface IFMSReport {
   driverId: string
   timestamp: string
   speed: number
-  brakePos: number
+  brakePedalPos: number
   brakeStatus: string
   externalLampStatus: boolean
   accelPedalPos: number
-  batterSupplyVoltage: number
+  batterySupplyVoltage: number
 }

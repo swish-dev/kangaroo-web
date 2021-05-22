@@ -1,4 +1,5 @@
 import { IJourneyInfo } from './Journey.interface'
+import { IFMSReport } from './FMS.interface'
 
 export interface IDriverInfo {
   id: string
@@ -13,5 +14,6 @@ export interface IDriverInfo {
     type: string
     year: number
   }
+  fmsReport: IFMSReport
   journeys: Array<IJourneyInfo>
 }
