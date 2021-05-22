@@ -1,38 +1,29 @@
-import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { IDriverInfo } from '../../Shared/interfaces/Driver.interface'
-import { getDriverById } from '../../Shared/services/driver'
+import styled from 'styled-components'
+
 import MainLayout from '../layouts/main'
-import DriverProfile, { DriverProfileProps } from './Profile'
+import DriverProfile from './Profile'
 import Reviews from './Reviews'
 import Mbtis from './Mbtis'
 import StarRate from '../components/StarRate'
-import styled from 'styled-components'
+
+import { useDriver } from '../hooks'
 
 export default function Driver() {
   const { id } = useParams<{ id: string }>()
-  const [driverInfo, setDriverInfo] = useState<IDriverInfo>()
+  const driver = useDriver(id)
 
-  const getDriverInfo = async () => {
-    const data = await getDriverById(id)
-    setDriverInfo(data)
-  }
-
-  useEffect(() => {
-    if (!id) return
-    getDriverInfo()
-  }, [id])
-  if (!driverInfo) return null
+  if (!driver) return null
 
   return (
     <MainLayout isBackHeader headerTitle="Driver's info">
-      <DriverProfile {...(driverInfo as DriverProfileProps)} />
+      <DriverProfile {...driver} />
       <DescSection>
-        <StarRate score={driverInfo.rating} mb="1.5rem" />
-        <Desc>{driverInfo.description}</Desc>
+        <StarRate score={driver.rating} mb="1.5rem" />
+        <Desc>{driver.description}</Desc>
       </DescSection>
-      <Mbtis mbtis={driverInfo.mbtis} />
-      <Reviews reviews={driverInfo.reviews} />
+      <Mbtis mbtis={driver.mbtis} />
+      <Reviews reviews={driver.reviews} />
     </MainLayout>
   )
 }
