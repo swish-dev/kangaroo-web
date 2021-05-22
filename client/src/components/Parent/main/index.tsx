@@ -25,7 +25,7 @@ export default function Parent() {
   }
 
   if (isLoading) return <></>
-  if (!userId) return <Redirect to="/parent/login" />
+  if (!userId) return <Redirect to="/login" />
 
   return (
     <MainLayout>

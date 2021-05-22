@@ -6,10 +6,10 @@ export default function Footer() {
   return (
     <Wrapper>
       <ButtonWrapper>
-        <Button to="/parent/schedule" theme="outlined">
+        <Button to="/schedule" theme="outlined">
           <P>schedule</P>
         </Button>
-        <Button to="/parent/place" theme="filled">
+        <Button to="/place" theme="filled">
           <P>Call now</P>
         </Button>
       </ButtonWrapper>
