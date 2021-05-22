@@ -19,11 +19,17 @@ const updateJourney = async (journeyId: string, data: UpdateJourneyDto) => {
   return res.data
 }
 
+const completeJourney = async (journeyId: string) => {
+  const res = await base().patch(`/journeys/${journeyId}/complete`)
+  return res.data
+}
+
 const JourneyService = {
   createJourney,
   getJourneys,
   getJourneyById,
   updateJourney,
+  completeJourney,
 }
 
 export default JourneyService
