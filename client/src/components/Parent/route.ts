@@ -1,7 +1,15 @@
 import Parent from './index'
+import Login from './Login'
 
-const route = {
-  path: '/parent',
-  component: Parent,
-}
-export default route
+const routes = [
+  {
+    path: '/parent',
+    component: Parent,
+  },
+  {
+    path: '/parent/login',
+    component: Login,
+  },
+]
+
+export default routes
