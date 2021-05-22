@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import dayjs from 'dayjs'
 import { IoIosArrowBack } from 'react-icons/io'
 import { useSetRequestInterval } from '../../Shared/hooks/useSetRequestInterval'
@@ -8,6 +9,7 @@ import './style.scss'
 
 interface Props {
   driver: IDriverInfo
+  setSelectedDriver: (driver: IDriverInfo | null) => void
 }
 
 const fmsDATA = {
@@ -21,13 +23,13 @@ const fmsDATA = {
   batterSupplyVoltage: 50,
 }
 
-function DriverDetail({ driver }: Props) {
+function DriverDetail({ driver, setSelectedDriver }: Props) {
   const { name, journeys } = driver
   return (
     <div className="driver-detail">
       <div className="detail-header">
         <div className="header-left">
-          <IoIosArrowBack />
+          <IoIosArrowBack onClick={() => setSelectedDriver(null)} />
           <p>{name}</p>
         </div>
         {journeys[journeys.length - 1]?.status.toLowerCase()}
@@ -91,4 +93,4 @@ function DriverDetail({ driver }: Props) {
   )
 }
 
-export default DriverDetail
+export default memo(DriverDetail)
