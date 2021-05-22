@@ -145,3 +145,9 @@ a {
   cursor: pointer;
   text-decoration: none;
 }
+
+input:focus {
+  outline: none !important;
+  border-color: none;
+  box-shadow: none;
+}

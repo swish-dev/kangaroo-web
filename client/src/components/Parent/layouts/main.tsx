@@ -2,10 +2,11 @@ import styled from 'styled-components'
 import { MainHeader } from '../headers/main'
 
 export default function MainLayout(props: any) {
+  const { withoutHeader } = props
   return (
     <Wrapper>
       <Content>
-        <MainHeader />
+        {!withoutHeader && <MainHeader />}
         {props.children}
       </Content>
     </Wrapper>

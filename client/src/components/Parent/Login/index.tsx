@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 
 import UserService from '../../Shared/services/user'
+import MainLayout from '../layouts/main'
 
 export default function Login() {
   const [nickname, setNickname] = useState('')
@@ -14,7 +15,16 @@ export default function Login() {
     setNickname(value)
   }
 
+  const validateNickname = () => {
+    return nickname.length > 0
+  }
+
   const handleLogin = async () => {
+    if (!validateNickname()) {
+      alert('you have to enter nickname')
+      return
+    }
+
     try {
       await UserService.login({ nickname })
       history.push('/parent')
@@ -24,19 +34,54 @@ export default function Login() {
   }
 
   return (
-    <Wrapper>
-      <Input value={nickname} onChange={handleNicknameChange} name="nickname" />
-      <Submit onClick={handleLogin}>로그인</Submit>
-    </Wrapper>
+    <MainLayout withoutHeader>
+      <Wrapper>
+        <P>Please enter your child's name or nickname.</P>
+        <Input
+          value={nickname}
+          onChange={handleNicknameChange}
+          name="nickname"
+        />
+        <Submit onClick={handleLogin}>Set</Submit>
+      </Wrapper>
+    </MainLayout>
   )
 }
+
 const Wrapper = styled.div`
   width: 100%;
   min-height: 100vh;
+  padding-top: 5.5rem;
+`
+const P = styled.p`
+  font-size: 2.4rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 3.6rem;
+  letter-spacing: 0em;
+  text-align: left;
 `
 
 const Input = styled.input`
-  width: fit-content;
+  width: 100%;
+  height: 3rem;
+  border: none;
+  border-bottom: 1px solid black;
+  font-size: 1.8rem;
 `
 
-const Submit = styled.button``
+const Submit = styled.button`
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4.8rem;
+
+  width: 100%;
+  border-radius: 1rem;
+  height: 5rem;
+
+  border: none;
+  background: #c4c4c4;
+  font-size: 1.6rem;
+  font-weight: bold;
+`
