@@ -2,18 +2,16 @@ import styled from 'styled-components'
 
 export default function Title() {
   return (
-    <Wrapper>
-      <P>
-        Hi, Where should I take
-        <br />
-        Minsu?
-      </P>
-    </Wrapper>
+    <P>
+      Hi, Where should I take
+      <br />
+      Minsu?
+    </P>
   )
 }
-const Wrapper = styled.div``
 
 const P = styled.p`
   font-size: 2.4rem;
   font-weight: bold;
+  margin-bottom: 3.6rem;
 `

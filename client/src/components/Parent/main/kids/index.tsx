@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import UserService from '../../../Shared/services/user'
 
-export function KidsPart() {
+export default function KidsPart() {
   const id = UserService.getMyId()
   const [kids, setKids] = useState([])
   const [isSelected, setIsSelected] = useState(0)
@@ -48,7 +48,7 @@ export function KidsPart() {
 }
 
 const Wrapper = styled.div`
-  padding: 2.4rem 1.8rem;
+  padding: 2.4rem 0;
   display: flex;
   overflow-x: scroll;
   -ms-overflow-style: none;

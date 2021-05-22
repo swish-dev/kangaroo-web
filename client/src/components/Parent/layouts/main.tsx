@@ -1,11 +1,12 @@
 import styled from 'styled-components'
 import { MainHeader } from '../headers/main'
 
-export function MainLayout(props: any) {
+export default function MainLayout(props: any) {
+  const { withoutHeader } = props
   return (
     <Wrapper>
       <Content>
-        <MainHeader />
+        {!withoutHeader && <MainHeader />}
         {props.children}
       </Content>
     </Wrapper>
@@ -19,6 +20,7 @@ const Wrapper = styled.div`
 
 const Content = styled.div`
   max-width: 600px;
+  width: 100%;
   min-height: 100vh;
   height: fit-content;
   font-size: 10rem;
@@ -27,7 +29,7 @@ const Content = styled.div`
   flex-direction: column;
   flex: 1;
   align-self: center;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
   position: relative;
+  padding-left: 1.8rem;
+  padding-right: 1.8rem;
 `
