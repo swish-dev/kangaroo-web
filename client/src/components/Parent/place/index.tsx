@@ -6,8 +6,8 @@ import MainLayout from '../layouts/main'
 import RecentReservation from './recent'
 
 export default function Place() {
-  const [depart, setDepart] = useState('현위치')
-  const [arrive, setArrive] = useState('도착지')
+  const [depart, setDepart] = useState('Pick Up Location')
+  const [arrive, setArrive] = useState('Where to?')
   const history = useHistory()
 
   const handleDepart = ({ target: { value } }: any) => {
@@ -22,7 +22,7 @@ export default function Place() {
     keyCode,
   }: React.KeyboardEvent<HTMLInputElement>) => {
     if (keyCode === 13) {
-      history.push('/final-confirm')
+      history.push('/onboard')
     }
   }
 
