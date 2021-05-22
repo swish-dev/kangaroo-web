@@ -4,6 +4,10 @@ export function useSetRequestInterval(func: () => {}, sec: number) {
   const [result, setResult] = useState<any>('')
 
   useEffect(() => {
+    const asyncFunc = async () => {
+      setResult(await func())
+    }
+    asyncFunc()
     const timer = setInterval(async () => {
       setResult(await func())
     }, sec)
