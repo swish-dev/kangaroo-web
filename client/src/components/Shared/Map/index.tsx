@@ -1,13 +1,20 @@
 import { useEffect, useState } from 'react'
-import { IMarker, IImageSource } from '../interfaces/Marker.interface'
+import {
+  IMarker,
+  IImageSource,
+  IImageSize,
+} from '../interfaces/Marker.interface'
+import CarWithPerson from '../../../assets/images/car_w_person2.png'
+import CarWithoutPerson from '../../../assets/images/car_no_person.png'
 
 const IMAGE_SOURCE: IImageSource = {
-  CAR_FREE:
-    'https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDExMjZfMjM5%2FMDAxNjA2MzYzMDg1Mzg0.9MdukaSn3gWhhycn9tXBCcTARfpaHWioL-qCIiTMuE8g.Xyvs3NmWZ-GHS_2_6EV7agRSOZ7jlElnerL2CzVTc6og.JPEG.westwood78%2F269f1c30f679e709c122926af90a2d46.jpg&type=sc960_832',
-  CAR_OCCUPIED:
-    'https://search.pstatic.net/sunny/?src=https%3A%2F%2Fi.pinimg.com%2F736x%2F36%2F37%2F8b%2F36378ba7a41f1d1553940220c711675e--moustache-kitten.jpg&type=a340',
+  CAR_FREE: CarWithoutPerson,
+  CAR_OCCUPIED: CarWithPerson,
 }
-const IMAGE_SIZE = [64, 69]
+const IMAGE_SIZE: IImageSize = {
+  CAR_FREE: [40, 30],
+  CAR_OCCUPIED: [40, 45],
+}
 
 declare global {
   interface Window {
@@ -48,13 +55,15 @@ function Map({
   useEffect(() => {
     if (!map || markers.length === 0) return
 
-    const imageSize = new window.kakao.maps.Size(IMAGE_SIZE[0], IMAGE_SIZE[1])
     // 새로운 위치로 마커 생성
     const curMarkers = markers.map(({ lat, lng, imageType }) => {
       const markerPos = new window.kakao.maps.LatLng(lat, lng)
       const markerImage = new window.kakao.maps.MarkerImage(
         IMAGE_SOURCE[imageType],
-        imageSize
+        new window.kakao.maps.Size(
+          IMAGE_SIZE[imageType][0],
+          IMAGE_SIZE[imageType][1]
+        )
       )
       const marker = new window.kakao.maps.Marker({
         position: markerPos,
