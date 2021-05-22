@@ -1,7 +1,11 @@
 import { useHistory } from 'react-router'
 import styled from 'styled-components'
 
-export default function DriverItem({ name, avatarUrl, id }: any) {
+import { IDriverInfo } from '../../../Shared/interfaces/Driver.interface'
+
+export type DriverItemProps = Pick<IDriverInfo, 'id' | 'name' | 'avatarUrl'>
+
+export default function DriverItem({ name, avatarUrl, id }: DriverItemProps) {
   const history = useHistory()
 
   return (
@@ -10,9 +14,7 @@ export default function DriverItem({ name, avatarUrl, id }: any) {
         history.push(`/driver/${id}`)
       }}
     >
-      <ImgWrapper>
-        <Img src={avatarUrl} />
-      </ImgWrapper>
+      <Img src={avatarUrl} />
       <P>{name}</P>
     </Wrapper>
   )
@@ -24,24 +26,13 @@ const Wrapper = styled.div`
   margin-right: 2rem;
 `
 
-const ImgWrapper = styled.div`
-  width: 6.4rem;
-  height: 6.4rem;
-  border-radius: 999px;
-
-  background: grey;
-  margin-bottom: 1.2rem;
-  position: relative;
-  overflow: hidden;
-`
 const Img = styled.img`
   width: 6.4rem;
   height: 6.4rem;
-  border-radius: 999px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  margin-bottom: 1.2rem;
+  border-radius: 9999px;
+
+  object-fit: cover;
 `
 
 const P = styled.p`

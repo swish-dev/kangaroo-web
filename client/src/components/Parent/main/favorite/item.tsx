@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 
-export default function FavoriteItem({ name, icon }: any) {
+export type FavoriteItemProps = {
+  name: string
+  icon?: unknown
+}
+
+export default function FavoriteItem({ name, icon }: FavoriteItemProps) {
   return (
     <Wrapper>
       <IconWrapper />
