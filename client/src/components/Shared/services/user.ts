@@ -29,7 +29,7 @@ export const updateUser = async (userId: string, data: UpdateUserDto) => {
   return res.data
 }
 
-export const getUsers = async () => {
+export const getUsers = async (): Promise<IUserInfo[]> => {
   const { data } = await base().get(`/users`)
   return data
 }

@@ -3,7 +3,7 @@ import { MarkerImageType } from '../Shared/interfaces/Marker.interface'
 import { IDriverInfo } from '../Shared/interfaces/Driver.interface'
 import { IMarker } from '../Shared/interfaces/Marker.interface'
 import { getDrivers } from '../Shared/services/driver'
-import { useSetRequestInterval } from '../Shared/hooks/useSetRequestInterval'
+import { usePollingFetch } from '../Shared/hooks'
 
 import Map from '../Shared/Map'
 import DriverDetail from './DriverDetail'
@@ -22,7 +22,8 @@ const SIDEBAR_MENU = {
 function Monitor() {
   const [markers, setMarkers] = useState<IMarker[]>([])
   const [selectedDriver, setSelectedDriver] = useState<IDriverInfo | null>(null)
-  const drivers: IDriverInfo[] = useSetRequestInterval(getDrivers, 1000) || []
+  const { data: drivers } = usePollingFetch(getDrivers, 1000) || []
+
   useEffect(() => {
     const driverMarkers =
       drivers?.map((driver) => {
