@@ -1,5 +1,5 @@
 export interface IDriverInfo {
-  id: number
+  id: string
   name: string
   age: number
   averageSpeed: number

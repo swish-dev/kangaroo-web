@@ -1,5 +1,5 @@
 export interface IFMSReport {
-  driverId: number
+  driverId: string
   timestamp: string
   speed: number
   breakPos: number

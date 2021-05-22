@@ -1,5 +1,5 @@
 export interface IUserInfo {
-  id: number
+  id: string
   nickname: string
   kidName: string
   kidAge: number
