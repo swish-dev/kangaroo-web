@@ -1,9 +1,9 @@
 import styled from 'styled-components'
-import { useGetUserInfo } from '../../hooks/useGetUserInfo'
+import { useMe } from '../../hooks'
 import RecentReservationCard from './card'
 
 export default function RecentReservation() {
-  const userInfo = useGetUserInfo()
+  const userInfo = useMe()
 
   return (
     <Wrapper>
