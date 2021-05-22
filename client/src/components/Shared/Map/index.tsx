@@ -28,6 +28,7 @@ function Map({
   width = '100wh',
   level = 4,
 }: Props) {
+  // Map Binding
   const [map, setMap] = useState(null)
   useEffect(() => {
     const container = document.getElementById('map')
@@ -42,11 +43,14 @@ function Map({
     setMap(new window.kakao.maps.Map(container, options))
   }, [])
 
+  // Marker management
+  const [prevMarkers, setPrevMarkers] = useState<any[]>([])
   useEffect(() => {
     if (!map || markers.length === 0) return
 
     const imageSize = new window.kakao.maps.Size(IMAGE_SIZE[0], IMAGE_SIZE[1])
-    markers.forEach(({ lat, lng, imageType }) => {
+    // 새로운 위치로 마커 생성
+    const curMarkers = markers.map(({ lat, lng, imageType }) => {
       const markerPos = new window.kakao.maps.LatLng(lat, lng)
       const markerImage = new window.kakao.maps.MarkerImage(
         IMAGE_SOURCE[imageType],
@@ -57,7 +61,11 @@ function Map({
         image: markerImage,
       })
       marker.setMap(map)
+      return marker
     })
+    // 이전 마커 삭제
+    prevMarkers.forEach((marker) => marker.setMap(null))
+    setPrevMarkers(curMarkers)
   }, [map, markers])
 
   return <div id="map" style={{ width, height }}></div>
