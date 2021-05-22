@@ -1,4 +1,6 @@
 import styled, { css } from 'styled-components'
+import * as faker from 'faker'
+
 import { Color } from '../../../Shared/contant/color.enum'
 import UserService from '../../../Shared/services/user'
 
@@ -23,7 +25,7 @@ export default function KidsPart({
 
   const handleAddKid = async () => {
     const data = await UserService.addKid(id, {
-      name: 'n',
+      name: faker.name.findName(),
       age: 7,
       avatarUrl:
         'https://pixabay.com/ko/photos/%EB%8F%85%EC%88%98%EB%A6%AC-%EC%83%88-%EC%9C%A1%EC%8B%9D-%EB%8F%99%EB%AC%BC-%EC%B4%88%EC%83%81%ED%99%94-5083248/',
