@@ -20,7 +20,6 @@ const Img = styled.img`
   width: 6.4rem;
   height: 6.4rem;
   border-radius: 999px;
-
   margin-bottom: 1.2rem;
 `
 

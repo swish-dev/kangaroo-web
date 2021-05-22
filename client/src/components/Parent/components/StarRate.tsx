@@ -1,15 +1,26 @@
+import { CSSProperties } from 'react'
 import styled from 'styled-components'
+
 import { Color } from '../../Shared/contant/color.enum'
 import StarHalfIcon from '../../../assets/icons/StarHalfIcon'
+
+export type StarRateProps = {
+  score: number
+  size?: string
+  mb?: string
+  offset?: string
+  wrapperStyle?: CSSProperties
+}
 
 export default function StarRate({
   score,
   size = '1.8rem',
   mb,
   offset = '0.8rem',
-}: any) {
+  wrapperStyle,
+}: StarRateProps) {
   return (
-    <Wrapper mb={mb}>
+    <Wrapper style={wrapperStyle} mb={mb}>
       {[...Array(5)].map((_, index) => (
         <StarWrapper key={index}>
           <StarHalfIcon
@@ -18,8 +29,8 @@ export default function StarRate({
               height: size,
               marginRight: offset,
             }}
-            fillLeft={index < score ? Color.main : Color.g100}
-            fillRight={index + 0.5 < score ? Color.main : Color.g100}
+            fillLeft={index < score ? Color.main : Color.g1000}
+            fillRight={index + 0.5 < score ? Color.main : Color.g1000}
           />
         </StarWrapper>
       ))}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Redirect } from 'react-router'
 import UserService from '../../Shared/services/user'
-import { useGetUserId } from '../hooks/useGetUserId'
+import { useMyId } from '../hooks'
 
 import MainLayout from '../layouts/main'
 import Driver from './driver'
@@ -11,7 +11,7 @@ import KidsPart from './kids'
 import Title from './title'
 
 export default function Parent() {
-  const { userId, isLoading } = useGetUserId()
+  const { userId, isLoading } = useMyId()
   const [kids, setKids] = useState([])
   const [selectedKid, setSelectedKid] = useState(0)
   useEffect(() => {
