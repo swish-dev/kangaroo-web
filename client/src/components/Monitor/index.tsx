@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { MarkerImageType } from '../Shared/interfaces/Marker.interface'
 
 import Map from '../Shared/Map'
+import TaxiList from './TaxiList'
+import UserList from './UserList'
 import './style.scss'
 
 function Monitor() {
@@ -28,7 +30,11 @@ function Monitor() {
   }, [])
 
   return (
-    <div className="App">
+    <div>
+      <div className="list-box">
+        <TaxiList />
+        <UserList />
+      </div>
       <Map {...{ markers }} />
     </div>
   )
