@@ -6,7 +6,6 @@ const places = [
   { name: 'Home', imageUrl: 'home1.png' },
   { name: 'Grandpa', imageUrl: 'home2.png' },
   { name: 'School', imageUrl: 'books.png' },
-  { name: 'Add', imageUrl: 'add.png' },
 ]
 export default function Favorite() {
   return (

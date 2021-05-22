@@ -2,16 +2,13 @@ import styled, { css } from 'styled-components'
 import { Link } from 'react-router-dom'
 import { Color } from '../../../Shared/contant/color.enum'
 
-export default function Footer() {
+export default function Footer({kid}:any) {
   return (
     <>
     <div style={{height:'12rem'}}/>
     <Wrapper>
-      <ButtonWrapper>
-        {/* <Button to="/schedule" theme="outlined">
-          <P>schedule</P>
-        </Button> */}
-        <Button to="/place" theme="filled">
+      <ButtonWrapper>        
+        <Button to={`/place?kids=${kid?.id}`} theme="filled">
           <P>Call now</P>
         </Button>
       </ButtonWrapper>
