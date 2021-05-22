@@ -15,7 +15,7 @@ export function useGetUserInfo() {
     try {
       getUserData()
     } catch (err) {}
-  })
+  }, [])
 
   return userInfo
 }
