@@ -45,6 +45,7 @@ const Button = styled(Link)`
   ${(props) =>
     props.theme === 'outlined' &&
     css`
+      background-color: ${Color.background};
       border: 1px solid ${Color.main};
       color: ${Color.main};
     `};

@@ -41,6 +41,7 @@ const P = styled.p`
 const ItemWrapper = styled.div`
   display: flex;
   width: 100%;
-  overflow-x: scroll;
-  padding-right: -1.8rem;
+  overflow-y: hidden;
+  overflow-x: auto;
+  margin-right: -1.6rem;
 `

@@ -151,3 +151,14 @@ input:focus {
   border-color: none;
   box-shadow: none;
 }
+
+button {
+  border: none;
+  outline: none;
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}

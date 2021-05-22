@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import styled from 'styled-components'
+
+import MenuIcon from '../../../assets/icons/MenuIcon'
 import MainDrawer from '../drawers/main'
 
 export default function MainHeader() {
@@ -14,7 +16,9 @@ export default function MainHeader() {
 
   return (
     <Wrapper>
-      <button onClick={handleOpen}> d </button>
+      <button onClick={handleOpen}>
+        <MenuIcon />
+      </button>
       <MainDrawer {...{ open, handleClose }} />
     </Wrapper>
   )
