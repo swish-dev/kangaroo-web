@@ -4,7 +4,7 @@ import {
   IImageSource,
   IImageSize,
 } from '../interfaces/Marker.interface'
-import CarWithPerson from '../../../assets/images/car_w_person2.png'
+import CarWithPerson from '../../../assets/images/car_w_person1.png'
 import CarWithoutPerson from '../../../assets/images/car_no_person.png'
 
 const IMAGE_SOURCE: IImageSource = {
@@ -12,8 +12,8 @@ const IMAGE_SOURCE: IImageSource = {
   CAR_OCCUPIED: CarWithPerson,
 }
 const IMAGE_SIZE: IImageSize = {
-  CAR_FREE: [25, 20],
-  CAR_OCCUPIED: [30, 35],
+  CAR_FREE: [25, 25],
+  CAR_OCCUPIED: [25, 25],
 }
 
 declare global {
@@ -27,24 +27,26 @@ interface Props {
   width?: string
   level?: number
   markers?: IMarker[]
+  isFollow?: boolean
 }
 
 function Map({
   markers = [],
   height = '100vh',
   width = '100wh',
-  level = 4,
+  level = 3,
+  isFollow = false,
 }: Props) {
   // Map Binding
-  const [map, setMap] = useState(null)
+  const [map, setMap] = useState<any>(null)
   useEffect(() => {
     const container = document.getElementById('map')
     const options = {
       level,
       center: new window.kakao.maps.LatLng(
-        // 시청역
-        37.56572474944695,
-        126.97737353796997
+        // 을지로3가역
+        37.56632130487183,
+        126.99262809153915
       ),
     }
     setMap(new window.kakao.maps.Map(container, options))
@@ -80,6 +82,15 @@ function Map({
     // 이전 마커 삭제
     prevMarkers.forEach((marker) => marker.setMap(null))
     setPrevMarkers(curMarkers)
+
+    // 한 마커만을 따라가는 경우
+    if (isFollow) {
+      const movePos = new window.kakao.maps.LatLng(
+        markers[0].lat,
+        markers[0].lng
+      )
+      map?.panTo(movePos)
+    }
   }, [map, markers])
 
   return <div id="map" style={{ width, height }}></div>
