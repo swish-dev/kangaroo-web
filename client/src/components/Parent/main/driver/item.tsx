@@ -7,7 +7,7 @@ export default function DriverItem({ name, avatarUrl, id }: any) {
   return (
     <Wrapper
       onClick={() => {
-        history.push(`/parent/driver/${id}`)
+        history.push(`/driver/${id}`)
       }}
     >
       <ImgWrapper>
