@@ -1,14 +1,11 @@
 import styled from 'styled-components'
 
-export type FavoriteItemProps = {
-  name: string
-  icon?: unknown
-}
+export type FavoriteItemProps = { name: string; imageUrl: string }
 
-export default function FavoriteItem({ name, icon }: FavoriteItemProps) {
+export default function FavoriteItem({ name, imageUrl }: FavoriteItemProps) {
   return (
     <Wrapper>
-      <IconWrapper />
+      <Img src={`/images/favorites/${imageUrl}`} />
       <P>{name}</P>
     </Wrapper>
   )
@@ -19,12 +16,10 @@ const Wrapper = styled.div`
   flex-direction: column;
   margin-right: 2rem;
 `
-const IconWrapper = styled.div`
+const Img = styled.img`
   width: 6.4rem;
   height: 6.4rem;
   border-radius: 999px;
-
-  background: grey;
   margin-bottom: 1.2rem;
 `
 

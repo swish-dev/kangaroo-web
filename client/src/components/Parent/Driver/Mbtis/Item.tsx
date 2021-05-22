@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export default function MbtisItem({ type, name }: any) {
   return (
     <Wrapper>
-      <Img src={`/mbtis/${type}.png`} />
+      <Img src={`/images/mbtis/${type}.png`} />
       <Name>{name}</Name>
     </Wrapper>
   )

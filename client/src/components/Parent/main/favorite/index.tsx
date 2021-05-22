@@ -2,14 +2,19 @@ import styled from 'styled-components'
 
 import FavoriteItem from './item'
 
+const places = [
+  { name: 'Home', imageUrl: 'home1.png' },
+  { name: 'Grandpa', imageUrl: 'home2.png' },
+  { name: 'School', imageUrl: 'books.png' },
+  { name: 'Add', imageUrl: 'add.png' },
+]
 export default function Favorite() {
-  const dummy = ['Home', 'Grandpa']
   return (
     <Wrapper>
       <P>Favorites</P>
       <ItemWrapper>
-        {dummy.map((v, i) => (
-          <FavoriteItem key={i} name={v} />
+        {places.map((v, i) => (
+          <FavoriteItem key={i} {...v} />
         ))}
       </ItemWrapper>
     </Wrapper>
@@ -31,5 +36,6 @@ const P = styled.p`
 const ItemWrapper = styled.div`
   display: flex;
   width: 100%;
-  overflow-x: scroll;
+  overflow-y: hidden;
+  overflow-x: auto;
 `
