@@ -1,11 +1,32 @@
-.list-box {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 100vh;
-  width: 300px;
-  z-index: 2;
-  background-color: white;
+.monitor {
+  font-size: 2rem;
+  .sidebar {
+    position: fixed;
+    top: 50%;
+    transform: translate(0, -50%);
+    height: 90%;
+    width: 360px;
+    margin-left: 1rem;
+    z-index: 2;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+
+    .select {
+      display: flex;
+      margin-top: 2rem;
+      justify-content: center;
+      font-size: 1.5rem;
+      .selected-base {
+        padding: 1rem;
+        width: 100px;
+        text-align: center;
+      }
+      .selected {
+        background-color: #ececec;
+        border-radius: 47px;
+      }
+    }
+  }
 }
