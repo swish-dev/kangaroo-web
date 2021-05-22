@@ -3,12 +3,20 @@ import MainHeader from '../headers/main'
 import BackHeader from '../headers/back'
 import { Color } from '../../Shared/contant/color.enum'
 
-export default function MainLayout(props: any) {
-  const { withoutHeader, isBackHeader } = props
+export type MainLayoutProps = {
+  withoutHeader?: boolean
+  isBackHeader?: boolean
+  headerTitle?: string
+  children: any
+}
+
+export default function MainLayout(props: MainLayoutProps) {
+  const { withoutHeader, isBackHeader, headerTitle } = props
   return (
     <Wrapper>
       <Content>
-        {!withoutHeader && (isBackHeader ? <BackHeader /> : <MainHeader />)}
+        {!withoutHeader &&
+          (isBackHeader ? <BackHeader title={headerTitle} /> : <MainHeader />)}
         {props.children}
       </Content>
     </Wrapper>

@@ -5,6 +5,7 @@ import { IRouteEdge } from './RouteEgde.interface'
 export interface IDriverInfo {
   id: string
   name: string
+  description: string
   age: number
   avatarUrl: string
   averageSpeed: number
@@ -18,6 +19,7 @@ export interface IDriverInfo {
     text: string
     createdAt: Date
   }>
+  rating: number
   crimeHistory?: Array<{ time: string; type: string }>
   car: {
     id: string
