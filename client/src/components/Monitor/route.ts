@@ -1,7 +1,7 @@
-import Sample from './index'
+import Monitor from './index'
 
 const route = {
   path: '/monitor',
-  component: Sample,
+  component: Monitor,
 }
 export default route
