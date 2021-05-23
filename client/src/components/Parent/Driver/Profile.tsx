@@ -1,18 +1,22 @@
 import styled from 'styled-components'
+
 import { IDriverInfo } from '../../Shared/interfaces/Driver.interface'
 import BestBadge from '../components/BestBadge'
 
-export type DriverProfileProps = Pick<IDriverInfo, 'name' | 'avatarUrl' | 'age'|'isBest'>
+export type DriverProfileProps = Pick<
+  IDriverInfo,
+  'name' | 'avatarUrl' | 'age' | 'isBest'
+>
 export default function DriverProfile({
   name,
   avatarUrl,
   age,
-  isBest
+  isBest,
 }: DriverProfileProps) {
   return (
     <Wrapper>
-      <ImgWrapper >
-      {isBest&& <BestBadge/>}
+      <ImgWrapper>
+        {isBest && <BestBadge />}
         <Img src={avatarUrl} />
       </ImgWrapper>
       <Name>{name}</Name>
@@ -45,6 +49,8 @@ const Img = styled.img`
   top: 0;
   left: 0;
   right: 0;
+
+  object-fit: cover;
 `
 
 const Name = styled.p`
