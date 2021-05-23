@@ -50,7 +50,7 @@ export default function MonitorPage() {
       lat: lat,
       lng: lng,
       imageType:
-        journeys?.reverse()[0]?.status === 'DRIVING' ? CAR_OCCUPIED : CAR_FREE,
+        journeys?.slice().reverse()[0]?.status === 'DRIVING' ? CAR_OCCUPIED : CAR_FREE,
       onClick: handleDriverSelect(id),
     })) || []
 
@@ -61,7 +61,7 @@ export default function MonitorPage() {
   const isDateDiffBigger = (date: Date, threshold: number) => {
     if (!date) return true
     
-    const diff = Math.abs(dayjs(date).diff(dayjs(), 'day'))
+    const diff = Math.abs(dayjs(date).diff(dayjs(), 'minutes'))
     if (diff > threshold) return true
     return false
   }
@@ -109,9 +109,8 @@ export default function MonitorPage() {
                         </b>
                       </p>
                       <p>
-                        {journeys?.reverse()[0]?.status === 'COMPLETE' && isDateDiffBigger(journeys?.reverse()[0]?.arriveAt, THRESHOLD) ?
-                        journeys?.reverse()[0]?.status?.toLowerCase()
-                        :''}
+                        {journeys?.slice().reverse()[0]?.status === 'COMPLETED' && isDateDiffBigger(journeys?.slice().reverse()[0]?.arriveAt, THRESHOLD) ?
+                        '':journeys?.slice().reverse()[0]?.status?.toLowerCase()}
                       </p>
                     </li>
                   )
