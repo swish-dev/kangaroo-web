@@ -8,7 +8,7 @@ export interface IJourneyInfo {
   driverId: string
 
   driver: IDriverInfo
-  status: 'PENDING' | 'DRIVING' | 'COMPLETE'
+  status: 'PENDING' | 'DRIVING' | 'COMPLETED'
   departAt: Date
   arriveAt: Date
   departRouteEdge: IRouteEdge
