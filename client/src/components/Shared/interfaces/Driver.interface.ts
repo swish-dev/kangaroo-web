@@ -19,6 +19,7 @@ export interface IDriverInfo {
     text: string
     createdAt: Date
   }>
+  isBest:boolean;
   rating: number
   crimeHistory?: Array<{ time: string; type: string }>
   car: {

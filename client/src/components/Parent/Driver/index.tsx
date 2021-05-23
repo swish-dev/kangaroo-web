@@ -14,8 +14,6 @@ export default function Driver() {
   const { id } = useParams<{ id: string }>()
   const driver = useDriver(id)
 
-
-
   return (
     <MainLayout isBackHeader headerTitle="Driver's info">
       {driver && 

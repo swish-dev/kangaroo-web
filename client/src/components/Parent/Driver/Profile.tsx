@@ -1,15 +1,18 @@
 import styled from 'styled-components'
 import { IDriverInfo } from '../../Shared/interfaces/Driver.interface'
+import BestBadge from '../components/BestBadge'
 
-export type DriverProfileProps = Pick<IDriverInfo, 'name' | 'avatarUrl' | 'age'>
+export type DriverProfileProps = Pick<IDriverInfo, 'name' | 'avatarUrl' | 'age'|'isBest'>
 export default function DriverProfile({
   name,
   avatarUrl,
   age,
+  isBest
 }: DriverProfileProps) {
   return (
     <Wrapper>
-      <ImgWrapper>
+      <ImgWrapper >
+      {isBest&& <BestBadge/>}
         <Img src={avatarUrl} />
       </ImgWrapper>
       <Name>{name}</Name>
