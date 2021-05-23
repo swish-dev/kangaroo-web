@@ -4,14 +4,21 @@ import styled from 'styled-components'
 import { Color } from '../../../Shared/contant/color.enum'
 import { IJourneyInfo } from '../../../Shared/interfaces/Journey.interface'
 import StarRate from '../../components/StarRate'
+import { useDriver } from '../../hooks'
 
 export type RecentReservationCardProps = IJourneyInfo
 
 export default function RecentReservationCard({
-  driver,
+  driverId,
   arriveAt,
   arriveRouteEdge,
 }: RecentReservationCardProps) {
+  const driver = useDriver(driverId)
+
+  if (!driver) {
+    return null
+  }
+
   const { name, avatarUrl } = driver
 
   return (

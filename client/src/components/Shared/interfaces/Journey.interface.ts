@@ -1,4 +1,3 @@
-import { IDriverInfo } from './Driver.interface'
 import { IRouteEdge } from './RouteEgde.interface'
 
 export interface IJourneyInfo {
@@ -7,7 +6,6 @@ export interface IJourneyInfo {
   kidId: string
   driverId: string
 
-  driver: IDriverInfo
   status: 'PENDING' | 'DRIVING' | 'COMPLETED'
   departAt: Date
   arriveAt: Date
