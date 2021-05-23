@@ -31,7 +31,11 @@ export default function Place() {
     if (keyCode === 13) {
       const userId= UserService.getMyId();
       const kid = query.get('kids');
-      await JourneyService.createJourney({userId, kidIds:[kid as string]});
+      try{
+        await JourneyService.createJourney({userId, kidIds:[kid as string]});
+      }catch(err){
+        alert('There are no drivers available. Please wait a minute');
+      }
       history.push('/onboard')
     }
   }
